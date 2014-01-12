@@ -5,8 +5,8 @@
 
 var passport = require('passport')
   , TwitterStrategy = require('passport-twitter').Strategy
-  , FacebookStrategy = require('passport-facebook').Strategy 
-
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , LocalStrategy = require('passport-local').Strategy
 /**
  * Expose Authentication Strategy
  */
@@ -32,6 +32,15 @@ function Strategy (app) {
     done(null, user);
   });
 
+  passport.use(new LocalStrategy({ usernameField: 'username', passwordField: 'password'},
+    function(username, password, done) {
+      //find user in database here
+      var user = {id: 1, username: username };
+      return done(null, user);
+    }
+  ));
+
+
   if(config.auth.twitter.consumerkey.length) {
     passport.use(new TwitterStrategy({
         consumerKey: config.auth.twitter.consumerkey,
@@ -42,7 +51,7 @@ function Strategy (app) {
         return done(null, profile);
       }
     ));
-  } 
+  }
 
   if(config.auth.facebook.clientid.length) {
     passport.use(new FacebookStrategy({

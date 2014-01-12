@@ -3,11 +3,12 @@ extends layout
 block content
 	.select-room-container.box-container.clearfix
 		.inner-padding.clearfix
-			img.logo(src='/img/logo.png', width='217', height='239', alt='Logo')
+			h3 UCSD Secret Chat Room
+			img.logo(src='/img/logo_2.png', width='217', height='239', alt='Logo', style='border-radius: 100px')
 			.clear
 			.rooms-block
 				h4 Select a room:
-				.room-list.hide-inactive
+				.room-list
 					each room,index in rooms
 						- var roomClass = room.online > 0 ? "room-active" : "room-inactive";
 						- var word = room.online == 1 ? "user" : "users";
@@ -16,7 +17,7 @@ block content
 							span.users-online
 								| #{room.online} #{word}
 				.inactive
-					input(type='checkbox', id="hide-inactive", checked) 
+					input(type='checkbox', id="hide-inactive")
 					label(for="hide-inactive") Hide inactive
 			.create-room-block
 				h4
@@ -30,9 +31,9 @@ block content
 
 
 	footer
-		| Balloons.IO is an 
-		a(href='https://github.com/gravityonmars/Balloons.IO', target="_blank") Open Source project 
-		| developed by 
+		| Balloons.IO is an
+		a(href='https://github.com/gravityonmars/Balloons.IO', target="_blank") Open Source project
+		| developed by
 		a(href='http://twitter.com/gravityonmars', target="_blank") Gravity On Mars.
 	script.
 		$('#hide-inactive').click(function(ev) {
