@@ -3,7 +3,7 @@
   "description": "Web multi-room chat server and client ready to use.",
   "version": "0.0.1",
   "dependencies": {
-    "express": "3.3.4",
+    "express": "4.17.1",
     "connect": "~2.8.4",
     "debug": "~0.7.2",
     "cookie": "0.0.x",
